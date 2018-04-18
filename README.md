@@ -300,6 +300,9 @@ Support
 
 Changelog
 ---------
+v1.0.1
+* Fix .npmignore
+
 v1.0.0
 * Initial public release
 
