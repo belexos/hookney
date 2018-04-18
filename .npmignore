@@ -1,0 +1,4 @@
+spec/
+test/
+Gruntfile.js
+write-*.json

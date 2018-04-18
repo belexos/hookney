@@ -1,0 +1,56 @@
+{
+  "name": "hookney",
+  "version": "1.0.0",
+  "description": "Hookney is a helper around self referencing JSON objects for Node.js and the Browser.",
+  "main": "hookney.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "nyc ./node_modules/.bin/jasmine",
+    "build": "grunt build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/belexos/hookney.git"
+  },
+  "keywords": [
+    "json",
+    "self",
+    "reference",
+    "self-reference",
+    "configuration",
+    "configuration file",
+    "stringify",
+    "parse",
+    "comment",
+    "read",
+    "write",
+    "load",
+    "save",
+    "from file",
+    "from string"
+  ],
+  "author": "Br00ze <br00ze@belexos.com> (http://belexos.com)",
+  "license": "MIT",
+  "homepage": "https://github.com/belexos/hookney#readme",
+  "nyc": {
+    "exclude": [
+      "**/*Spec.js"
+    ],
+    "reporter": [
+      "text",
+      "html"
+    ]
+  },
+  "dependencies": {
+    "lodash": "^4.17.5"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.2",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "jasmine": "^3.1.0",
+    "nyc": "^11.4.1"
+  }
+}
