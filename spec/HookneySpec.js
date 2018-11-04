@@ -5,19 +5,60 @@ const nodeEnv = typeof module === 'object' && module && typeof module.exports ==
 
 describe("Hookney", function()
 {
-	it("should return given json.", function()
+	describe("Instantiation", function()
 	{
-		const json = { a: 1, b: "c" };
-		const hookney = new Hookney(json);
+		it("should return given json.", function()
+		{
+			const json = { a: 1, b: "c" };
+			const hookney = new Hookney(json);
 
-		expect(hookney.json()).not.toBe(json);
-		expect(hookney.json()).toEqual(json);
-	});
+			expect(hookney.json()).not.toBe(json);
+			expect(hookney.json()).toEqual(json);
+		});
 
-	it("should return {} on given null/undefined.", function()
-	{
-		expect(new Hookney(null).json()).toEqual({});
-		expect(new Hookney().json()).toEqual({});
+		it("should return {} on given null/undefined.", function()
+		{
+			expect(new Hookney(null).json()).toEqual({});
+			expect(new Hookney().json()).toEqual({});
+		});
+
+		it("should handle multiple parameters.", function()
+		{
+			expect(new Hookney({ a: 1, b: 2 }, { c: "three" }, { b: 3 }).json()).toEqual({a: 1, b: 3, c: "three"});
+		});
+
+		it("should resolve all references in JSON object composed of multiple parameters.", function()
+		{
+			const json1 = {
+				a: { x: 0, y: "str", z: true }
+			};
+
+			const json2 = {
+				r1: "${self:a}"
+			};
+
+			const json3 = {
+				r2: "str: ${self:a}"
+			};
+
+			const config = new Hookney(json1, json2, json3).resolveReferences().json();
+
+			expect(config).toEqual({
+				a: { x: 0, y: "str", z: true },
+
+				r1: { x: 0, y: "str", z: true },
+				r2: 'str: {"x":0,"y":"str","z":true}'
+			});
+			expect(json1).toEqual({
+				a: { x: 0, y: "str", z: true }
+			});
+			expect(json2).toEqual({
+				r1: "${self:a}"
+			});
+			expect(json3).toEqual({
+					r2: "str: ${self:a}"
+			});
+		});
 	});
 
 	describe("Stringify", function()
@@ -46,6 +87,40 @@ describe("Hookney", function()
 			expect(Hookney.from(null).json()).toEqual({});
 			expect(Hookney.from(undefined).json()).toEqual({});
 		});
+
+		it("should resolve all references in JSON object composed of multiple parameters.", function()
+		{
+			const json1 = {
+				a: { x: 0, y: "str", z: true }
+			};
+
+			const json2 = {
+				r1: "${self:a}"
+			};
+
+			const json3 = {
+				r2: "str: ${self:a}"
+			};
+
+			const config = Hookney.from(json1, json2, json3).resolveReferences().json();
+
+			expect(config).toEqual({
+				a: { x: 0, y: "str", z: true },
+
+				r1: { x: 0, y: "str", z: true },
+				r2: 'str: {"x":0,"y":"str","z":true}'
+			});
+			expect(json1).toEqual({
+				a: { x: 0, y: "str", z: true }
+			});
+			expect(json2).toEqual({
+				r1: "${self:a}"
+			});
+			expect(json3).toEqual({
+				r2: "str: ${self:a}"
+			});
+		});
+
 	});
 
 	describe("From string", function()

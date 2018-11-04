@@ -27,11 +27,20 @@
 		window.Hookney = Hookney;
 	}
 
-	function Hookney(json)
+	function Hookney()
 	{
 		'use strict';
 
-		json = _.cloneDeep(json || {});
+		const
+			l = arguments.length,
+			json = {};
+
+		var i;
+
+		for (i = 0; i < l; i++)
+		{
+			_.merge(json, arguments[i])
+		}
 
 		this.json = function()
 		{
@@ -187,9 +196,20 @@
 		}
 	}
 
-	Hookney.from = function(json)
+	Hookney.from = function()
 	{
-		return new Hookney(json || {});
+		const
+			l = arguments.length,
+			json = {};
+
+		var i;
+
+		for (i = 0; i < l; i++)
+		{
+			_.merge(json, arguments[i])
+		}
+
+		return new Hookney(json);
 	};
 
 	Hookney.fromString = function(text, reviver)

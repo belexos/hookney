@@ -1,6 +1,6 @@
 {
   "name": "hookney",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Hookney is a helper around self referencing JSON objects for Node.js and the Browser.",
   "main": "hookney.js",
   "directories": {

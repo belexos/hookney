@@ -300,6 +300,9 @@ Support
 
 Changelog
 ---------
+v1.1.0
+* Support multiple arguments on instantiation.
+
 v1.0.1
 * Fix .npmignore
 
