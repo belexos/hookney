@@ -300,6 +300,9 @@ Support
 
 Changelog
 ---------
+v1.1.2
+* Update npm modules.
+
 v1.1.0
 * Support multiple arguments on instantiation.
 
