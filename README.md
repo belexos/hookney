@@ -230,7 +230,7 @@ writeFile() and writeFileSync() support an optional 'options' parameter.
 const options = {
   encoding: 'utf8', // Default encoding
   mode: 0o666,      // Default mode
-  flag: 'w'         // Default flag
+  flag: 'w',         // Default flag
 
   replacer: null,   // Default is no replacer
   space: null       // Default is no space
@@ -300,6 +300,9 @@ Support
 
 Changelog
 ---------
+v1.1.3
+* Update npm modules.
+
 v1.1.2
 * Update npm modules.
 
