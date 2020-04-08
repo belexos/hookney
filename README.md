@@ -300,6 +300,9 @@ Support
 
 Changelog
 ---------
+v1.1.4
+* Update npm modules.
+
 v1.1.3
 * Update npm modules.
 
