@@ -1,13 +1,14 @@
 /**
- * Hookney - Helper around self referencing JSON objects for Node.js and the Browser.
+ * Hookney - Helper around self referencing JSON objects for Node.js and the browser.
  *
- * @copyright: Copyright (c) 2016-present, Belexos GmbH
+ * @copyright: Copyright (c) 2016-present, Belexos
  *
  * @author: Br00ze <br00ze@belexos.com> (http://belexos.com)
  *
  * @license This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
 
 (function(window)
 {
@@ -39,7 +40,7 @@
 
 		for (i = 0; i < l; i++)
 		{
-			_.merge(json, arguments[i])
+			_.merge(json, arguments[i]);
 		}
 
 		this.json = function()
@@ -68,7 +69,7 @@
 				if (!done)
 				{
 					done = options;
-					options = {}
+					options = {};
 				}
 
 				options = options || {};
@@ -206,7 +207,7 @@
 
 		for (i = 0; i < l; i++)
 		{
-			_.merge(json, arguments[i])
+			_.merge(json, arguments[i]);
 		}
 
 		return new Hookney(json);
@@ -232,7 +233,7 @@
 			if (!done)
 			{
 				done = options;
-				options = {}
+				options = {};
 			}
 
 			options = options || {};
@@ -286,7 +287,7 @@
 			catch (err)
 			{
 				err.message = path + ': ' + err.message;
-				throw err
+				throw err;
 			}
 		};
 	}
@@ -310,7 +311,7 @@
 
 		tokenizer.lastIndex = 0;
 
-		while (tmp = tokenizer.exec(json))
+		while ((tmp = tokenizer.exec(json)) !== null)
 		{
 			lc = RegExp.leftContext;
 			rc = RegExp.rightContext;

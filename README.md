@@ -1,7 +1,7 @@
 Hookney
 =======
 
-`Hookney` is a helper around self-referencing JSON objects for Node.js and the Browser.
+`Hookney` is a helper around self-referencing JSON objects for Node.js and the browser.
 `Hookney` supports reading from and writing to files. JSON files may contain comments.
 This makes `Hookney` ideal for handling configuration files.
 
@@ -32,10 +32,10 @@ You can download the latest release from the repository
 
 Load [lodash](https://lodash.com/) from a CDN or any other source.
 ```html
-<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
 
 <!-- Alternative CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
 
 <!-- Load from local node module -->
 <script src="node_modules/lodash/lodash.min.js"></script>
@@ -161,7 +161,7 @@ const config = Hookney.fromString(text).resolveReferences().json();
 // => config === { a: 1, b: "str", c: 1 }
 ```
 
-### Load JSON object from file and resolve references. JSON file may contain comments.
+### Load JSON object from a file and resolve references. JSON file may contain comments.
 
 ```js
 // Synchronous
@@ -180,7 +180,7 @@ Hookney.fromFile("/path/to/file.json", function(err, hookney)
 });
 ```
 
-Hookney.fromFile() and Hookney.fromFileSync() support an optional 'options' parameter.
+`Hookney.fromFile()` and `Hookney.fromFileSync()` support an optional `options` parameter.
 
 ```js
 const options = {
@@ -197,14 +197,15 @@ Hookney.fromFile("/path/to/file.json", options, function(err, hookney)
 });
 ```
 
-For details on the 'options' parameter, please refer to the 
+For details on the `options` parameter, please refer to the 
 [Node.js documentation](https://nodejs.org/api/fs.html#fs_fs_readfile_path_options_callback).
 
-In addition to the options described there, 1 additional parameter 'reviver' is supported.
-Please refer to the [JSON.parse() documentation](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)
+In addition to the options described there, 1 additional parameter `reviver` is supported.
+Please refer to the 
+[JSON.parse() documentation](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)
 for details.
 
-Hookney.fromFile() and Hookney.fromFileSync() are not available in the browser.
+`Hookney.fromFile()` and `Hookney.fromFileSync()` are not available in the browser.
 
 ### Write JSON object to file.
 
@@ -224,7 +225,7 @@ Hookney.writeFile("/path/to/file.json", function(err)
 });
 ```
 
-writeFile() and writeFileSync() support an optional 'options' parameter.
+`writeFile()` and `writeFileSync()` support an optional `options` parameter.
 
 ```js
 const options = {
@@ -243,14 +244,15 @@ Hookney.writeFile("/path/to/file.json", options, function(err)
 });
 ```
 
-For details on the 'options' parameter, please refer to the 
+For details on the `options` parameter, please refer to the 
 [Node.js documentation](https://nodejs.org/api/fs.html#fs_fs_writefilesync_file_data_options).
 
-In addition to the options described there, 2 additional parameters 'replacer' and 'space' are supported.
-Please refer to the [JSON.stringify() documentation](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
+In addition to the options described there, 2 additional parameters `replacer` and `space` are supported.
+Please refer to the 
+[JSON.stringify() documentation](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
 for details.
 
-writeFile() and writeFileSync() are not available in the browser.
+`writeFile()` and `writeFileSync()` are not available in the browser.
 
 
 More examples
@@ -260,12 +262,19 @@ Please refer to the [test spec](https://github.com/belexos/hookney/blob/master/s
 
 Testing
 -------
-We are using [Jasmine testing framework](https://jasmine.github.io/index.html) and [Istanbul test coverage framework](https://istanbul.js.org/).
+We use 
+* [JSHint](https://jshint.com/) for static code analysis.
+* [Jasmine testing framework](https://jasmine.github.io/index.html) for testing.
+* [Karma test runner](https://karma-runner.github.io/latest/index.html) for testing in the browser.
+* [Istanbul test coverage framework](https://istanbul.js.org/) for tracking test coverage.
 
+Steps to be taken
 * Clone or download the repository.
-* Change into project directory.
+* Change into the project directory.
 * Use `npm install` to install all development dependencies.
+* Use `npm runt lint` to run static code analysis. 
 * Use `npm test` to run the tests. 
+* Use `npm run coverage` to track test coverage. 
 * The output should display successful execution results and a code coverage map.
 
 
@@ -273,7 +282,7 @@ Build
 -----
 * Clone or download the repository.
 * Change into project directory.
-* Use `grunt` in project directory to build `hookney.min.js` from `hookney.js`.
+* Use `npm run build` in project directory to build `hookney.min.js` from `hookney.js`.
 
 
 Contribution
@@ -285,11 +294,14 @@ Pull requests are welcome.
 
 Issues
 ------
-We use GitHub issues to track bugs. Please ensure your bug description is clear and has sufficient instructions to be able to reproduce the issue.
+We use GitHub issues to track bugs. Please ensure your bug description is clear and has sufficient instructions to be 
+able to reproduce the issue.
 
-The absolute best way to report a bug is to submit a pull request including a new failing test which describes the bug. When the bug is fixed, your pull request can then be merged.
+The absolute best way to report a bug is to submit a pull request including a new failing test which describes the bug. 
+When the bug is fixed, your pull request can then be merged.
 
-The next best way to report a bug is to provide a reduced test case on jsFiddle or jsBin or produce exact code inline in the issue which will reproduce the bug.
+The next best way to report a bug is to provide a reduced test case on jsFiddle or jsBin or produce exact code inline 
+in the issue which will reproduce the bug.
 
 
 Support
@@ -300,6 +312,15 @@ Support
 
 Changelog
 ---------
+v1.2.0
+* Update npm modules.
+* Update and extend test environment.
+* Add static code analysis tool JSHint.
+* Add Karma test runner.
+* Fix JSHint issues.
+* Replace uglify-js by terser for minification.
+* Update README.
+
 v1.1.4
 * Update npm modules.
 
@@ -321,4 +342,5 @@ v1.0.0
 
 License
 -------
-Copyright (c) 2016-present, Belexos GmbH. `Hookney` is licensed under the [MIT License](https://github.com/belexos/hookney/blob/master/LICENSE).
+Copyright (c) 2016-present, Belexos. `Hookney` is licensed under the 
+[MIT License](https://github.com/belexos/hookney/blob/master/LICENSE).
